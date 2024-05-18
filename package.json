@@ -1,0 +1,80 @@
+{
+  "name": "xlrsis",
+  "version": "0.24.0512",
+  "description": "localmachine support for RSIS+Excel program",
+  "main": "./dist/server/",
+  "_moduleAliases": {
+    "@": "dist",
+    "<root>": "dist",
+    "<srv>": "dist/server"
+  },
+  "scripts": {
+    "production": "NODE_ENV=production npm run start",
+    "build": "npm run compile:clean",
+    "start": "node --trace-warnings dist/server/",
+    "start:tsc": "npm run compile && npm run start",
+    "compile": "npx tsc",
+    "compile:clean": "rm -rf dist/ && npm run compile",
+    "debug": "DEBUG=$DEBUG,helpers:*,raw:*,api:* npm run debug:app",
+    "debug:app": "DEBUG=$DEBUG,actions:* npm run start",
+    "debug:all": "DEBUG=* npm run start",
+    "debug:ts": "DEBUG=helpers:*,raw:*,api:*,app:*,actions:* npm run start",
+    "debug:ts/c": "npm run compile && npm run debug:ts",
+    "lint": "npx eslint .",
+    "install#clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install",
+    "i:asklim": "npm install github:asklim/asklim#master",
+    "i#asklim": "npm install git+https://asklim@github.com/asklim/asklim.git",
+    "postinstall": "npm run i:asklim",
+    "test": "jest .",
+    "spec": "jest 'spec/?(.*)/asklim.spec.ts'",
+    "spec:all": "jest 'spec/*/?(.*)+spec.[tj]s'"
+  },
+  "dependencies": {
+    "asklim": "github:asklim/asklim#master",
+    "axios": "^1.6.1",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.5",
+    "debug": "^4.3.4",
+    "dotenv": "^16.3.1",
+    "envalid": "^8.0.0",
+    "exceljs": "^4.4.0",
+    "express": "^4.18.2",
+    "form-data": "^4.0.0",
+    "http-errors": "^2.0.0",
+    "joi": "^17.11.0",
+    "loglevel": "^1.8.1",
+    "module-alias": "^2.2.2",
+    "mongoose": "^8.3.4",
+    "morgan": "^1.10.0",
+    "typescript": "^5.4.5",
+    "world-countries": "^5.0.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz",
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.6",
+    "@types/debug": "^4.1.12",
+    "@types/express": "^4.17.21",
+    "@types/http-errors": "^2.0.4",
+    "@types/jest": "^29.5.8",
+    "@types/module-alias": "^2.0.4",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^20.10.4",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "eslint": "^8.53.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "ts-loader": "^9.5.0",
+    "ts-node": "^10.9.2"
+  },
+  "overrides": {
+    "asklim": "github:asklim/asklim#master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "xlrsis@asklim.github.com"
+  },
+  "author": "AsKlim (asklim@outlook.com)",
+  "license": "ISC"
+}
